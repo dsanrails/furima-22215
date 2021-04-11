@@ -25,15 +25,16 @@ Things you may want to cover:
 
 ## users
 
-|Column                |Type  |Options   |
-|----------------------|------|----------|
-|name                  |string|null:false|
-|encrypted_password    |string|null:false|
-|firstname             |string|null:false|
-|lastname              |string|null:false|
-|firstname_kana        |string|null:false|
-|lastname_kana         |string|null:false|
-|date                  |date  |null:false|
+|Column                |Type  |Options     |
+|----------------------|------|------------|
+|name                  |string|null:false  |
+|email                 |string|unique: true|
+|encrypted_password    |string|null:false  |
+|firstname             |string|null:false  |
+|lastname              |string|null:false  |
+|firstname_kana        |string|null:false  |
+|lastname_kana         |string|null:false  |
+|date                  |date  |null:false  |
 
 
 ### Association
@@ -43,17 +44,17 @@ Things you may want to cover:
 
 ## items
 
-|Column      |Type   |Options          |
-|------------|-------|-----------------|
-|items_name  |string |null:false       |
-|explanation |text   |null:false       |
-|category    |integer|null:false       |
-|status      |integer|null:false       |
-|delivery fee|integer|null:false       |
-|area        |integer|null:false       |
-|days        |integer|null:false       |
-|price       |integer|null:false       |
-|user_id     |integer|foreign_key: true|
+|Column         |Type   |Options          |
+|---------------|-------|-----------------|
+|items_name     |string |null:false       |
+|explanation    |text   |null:false       |
+|category_id    |integer|null:false       |
+|status_id      |integer|null:false       |
+|delivery fee_id|integer|null:false       |
+|area_id        |integer|null:false       |
+|day_id         |integer|null:false       |
+|price          |integer|null:false       |
+|user_id        |integer|foreign_key: true|
 
 ### Association
 
@@ -75,15 +76,15 @@ Things you may want to cover:
 
 ## address
 
-|Column      |Type   |Options          |
-|------------|-------|-----------------|
-|postal_code |string |null:false       |
-|prefecture  |integer|null:false       |
-|municipality|string |null:false       |
-|address     |string |null:false       |
-|building    |string |                 |
-|tel         |string |null:false       |
-|purchase_id |integer|foreign_key: true|
+|Column       |Type   |Options          |
+|-------------|-------|-----------------|
+|postal_code  |string |null:false       |
+|prefecture_id|integer|null:false       |
+|municipality |string |null:false       |
+|address      |string |null:false       |
+|building     |string |                 |
+|tel          |string |null:false       |
+|purchase_id  |integer|foreign_key: true|
 
 ### Association
 
