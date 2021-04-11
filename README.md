@@ -25,29 +25,26 @@ Things you may want to cover:
 
 ## users
 
-|Column               |Type  |Options   |
-|---------------------|------|----------|
-|nickname             |string|null:false|
-|name                 |string|null:false|
-|password             |string|null:false|
-|password_confirmation|string|null:false|
-|firstname            |string|null:false|
-|lastname             |string|null:false|
-|firstname_kana       |string|null:false|
-|lastname_kana        |string|null:false|
-|birthday             |string|null:false|
+|Column                |Type  |Options   |
+|----------------------|------|----------|
+|name                  |string|null:false|
+|encrypted_confirmation|string|null:false|
+|firstname             |string|null:false|
+|lastname              |string|null:false|
+|firstname_kana        |string|null:false|
+|lastname_kana         |string|null:false|
+|date                  |string|null:false|
 
 
 ### Association
 
-has_many :items
-has_many :purchase
+- has_many :items
+- has_many :purchases
 
 ## items
 
 |Column      |Type  |Options          |
 |------------|------|-----------------|
-|image       |string|null:false       |
 |items_name  |string|null:false       |
 |explanation |string|null:false       |
 |category    |string|null:false       |
@@ -65,33 +62,31 @@ has_one :purchase
 
 ## purchase
 
-|Column     |Type  |Options          |
-|-----------|------|-----------------|
-|card       |string|null:false       |
-|expiration |string|null:false       |
-|cvc        |string|null:false       |
-|postal code|string|null:false       |
-|prefectures|string|null:false       |
-|city       |string|null:false       |
-|address    |string|null:false       |
-|building   |string|null:false       |
-|tel        |string|null:false       |
-|user_id    |string|foreign_key: true|
+|Column     |Type   |Options          |
+|-----------|-------|-----------------|
+|card       |string |null:false       |
+|expiration |string |null:false       |
+|cvc        |string |null:false       |
+|user_id    |integer|foreign_key: true|
+|items_id   |integer|foreign_key: true|
 
 ### Association
 
-belongs_to :items
+belongs_to :item
 has_one :address
+belongs_to :user
 
 ## address
 
-|Column      |Type  |Options   |
-|------------|------|----------|
-|postal_code |string|null:false|
-|prefectures |string|null:false|
-|municipality|string|null:false|
-|address     |string|null:false|
-|tel         |string|null:false|
+|Column      |Type   |Options          |
+|------------|-------|-----------------|
+|postal_code |string |null:false       |
+|prefectures |string |null:false       |
+|municipality|string |null:false       |
+|address     |string |null:false       |
+|building    |string |null:false       |
+|tel         |string |null:false       |
+|purchase_id |integer|foreign_key: true|
 
 ### Association
 
