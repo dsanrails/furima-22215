@@ -25,16 +25,16 @@ Things you may want to cover:
 
 ## users
 
-|Column                |Type  |Options     |
-|----------------------|------|------------|
-|name                  |string|null:false  |
-|email                 |string|unique: true|
-|encrypted_password    |string|null:false  |
-|firstname             |string|null:false  |
-|lastname              |string|null:false  |
-|firstname_kana        |string|null:false  |
-|lastname_kana         |string|null:false  |
-|date                  |date  |null:false  |
+|Column                |Type  |Options                 |
+|----------------------|------|------------------------|
+|name                  |string|null:false              |
+|email                 |string|null:false, unique: true|
+|encrypted_password    |string|null:false              |
+|firstname             |string|null:false              |
+|lastname              |string|null:false              |
+|firstname_kana        |string|null:false              |
+|lastname_kana         |string|null:false              |
+|date                  |date  |null:false              |
 
 
 ### Association
@@ -50,7 +50,7 @@ Things you may want to cover:
 |explanation    |text   |null:false       |
 |category_id    |integer|null:false       |
 |status_id      |integer|null:false       |
-|delivery fee_id|integer|null:false       |
+|delivery_fee_id|integer|null:false       |
 |area_id        |integer|null:false       |
 |day_id         |integer|null:false       |
 |price          |integer|null:false       |
