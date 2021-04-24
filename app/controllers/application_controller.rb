@@ -7,7 +7,3 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :firstname, :lastname, :firstname_kana, :lastname_kana, :date])
   end
 end
-
-## application_controller
-## ビューファイル。
-## user.rb
