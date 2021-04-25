@@ -5,8 +5,9 @@ FactoryBot.define do
     lastname       { '名前' }
     firstname_kana { 'ファーストネームカナ' }
     lastname_kana  { 'ラストネームカナ' }
-    date           { '生年月日' }
+    date           { '1981-02-03' }
     email          { 'test@example' }
-    password       { '000000' }
+    password       { '00000a' }
+    password_confirmation { '00000a' }
   end
 end
