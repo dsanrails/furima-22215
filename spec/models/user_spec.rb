@@ -56,24 +56,24 @@ RSpec.describe User, type: :model do
       @user.password = 'abcdef'
       @user.password_confirmation = 'abcdef'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is invalid")
+      expect(@user.errors.full_messages).to include('Password is invalid')
     end
     it 'passwordは数字のみでは登録できない' do
       @user.password = '123456'
       @user.password_confirmation = '123456'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is invalid")
+      expect(@user.errors.full_messages).to include('Password is invalid')
     end
     it 'passwordは英数字混合でないと登録できない' do
       @user.password = '000000'
       @user.password_confirmation = '000000'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is invalid")
+      expect(@user.errors.full_messages).to include('Password is invalid')
     end
     it 'emailは＠が含まれていないと登録できない' do
       @user.email = 'test.example'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Email is invalid")
+      expect(@user.errors.full_messages).to include('Email is invalid')
     end
     it '重複したemailが存在する場合登録できないこと' do
       @user.save
@@ -85,13 +85,13 @@ RSpec.describe User, type: :model do
       @user.firstname = 'kana'
       @user.lastname = 'kana'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Firstname is invalid", "Lastname is invalid")
+      expect(@user.errors.full_messages).to include('Firstname is invalid', 'Lastname is invalid')
     end
     it 'firstname_kana,lastname_kanaは全角カタカナ以外では登録できない' do
       @user.firstname_kana = 'aaaaaa'
       @user.lastname_kana = 'aaaaaa'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Firstname kana is invalid", "Lastname kana is invalid")
+      expect(@user.errors.full_messages).to include('Firstname kana is invalid', 'Lastname kana is invalid')
     end
   end
 end
