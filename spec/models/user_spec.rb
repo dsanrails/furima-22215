@@ -85,13 +85,13 @@ RSpec.describe User, type: :model do
       @user.firstname = 'kana'
       @user.lastname = 'kana'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Firstname and lastname Full-width characters")
+      expect(@user.errors.full_messages).to include("Firstname is invalid", "Lastname is invalid")
     end
     it 'firstname_kana,lastname_kanaは全角カタカナ以外では登録できない' do
-      @user.firstname_kana = 'アアアアアア'
-      @user.lastname_kana = 'アアアアアア'
+      @user.firstname_kana = 'aaaaaa'
+      @user.lastname_kana = 'aaaaaa'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Firstname_kana and lastname_kana Full-width katakana characters")
+      expect(@user.errors.full_messages).to include("Firstname kana is invalid", "Lastname kana is invalid")
     end
   end
 end
