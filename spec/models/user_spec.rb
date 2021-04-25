@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
   before do
     @user = FactoryBot.build(:user)
   end
@@ -52,6 +51,47 @@ RSpec.describe User, type: :model do
       @user.date = ''
       @user.valid?
       expect(@user.errors.full_messages).to include("Date can't be blank")
+    end
+    it 'passwordは英語のみでは登録できない' do
+      @user.password = 'abcdef'
+      @user.password_confirmation = 'abcdef'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+    end
+    it 'passwordは数字のみでは登録できない' do
+      @user.password = '123456'
+      @user.password_confirmation = '123456'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+    end
+    it 'passwordは英数字混合でないと登録できない' do
+      @user.password = '000000'
+      @user.password_confirmation = '000000'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+    end
+    it 'emailは＠が含まれていないと登録できない' do
+      @user.email = 'test.example'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Email is invalid")
+    end
+    it '重複したemailが存在する場合登録できないこと' do
+      @user.save
+      another_user = FactoryBot.build(:user, email: @user.email)
+      another_user.valid?
+      expect(another_user.errors.full_messages).to include('Email has already been taken')
+    end
+    it 'firstname,lastnameは漢字・平仮名・カタカナ以外では登録できない' do
+      @user.firstname = 'kana'
+      @user.lastname = 'kana'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Firstname and lastname Full-width characters")
+    end
+    it 'firstname_kana,lastname_kanaは全角カタカナ以外では登録できない' do
+      @user.firstname_kana = 'アアアアアア'
+      @user.lastname_kana = 'アアアアアア'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Firstname_kana and lastname_kana Full-width katakana characters")
     end
   end
 end
