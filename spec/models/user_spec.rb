@@ -87,17 +87,25 @@ RSpec.describe User, type: :model do
         another_user.valid?
         expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
-      it 'firstname,lastnameは漢字・平仮名・カタカナ以外では登録できない' do
+      it 'firstnameは漢字・平仮名・カタカナ以外では登録できない' do
         @user.firstname = 'kana'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Firstname is invalid')
+      end
+      it 'lastnameは漢字・平仮名・カタカナ以外では登録できない' do
         @user.lastname = 'kana'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Firstname is invalid', 'Lastname is invalid')
+        expect(@user.errors.full_messages).to include('Lastname is invalid')
       end
-      it 'firstname_kana,lastname_kanaは全角カタカナ以外では登録できない' do
+      it 'firstname_kanaは全角カタカナ以外では登録できない' do
         @user.firstname_kana = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Firstname kana is invalid')
+      end
+      it 'lastname_kanaは全角カタカナ以外では登録できない' do
         @user.lastname_kana = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Firstname kana is invalid', 'Lastname kana is invalid')
+        expect(@user.errors.full_messages).to include('Lastname kana is invalid')
       end
     end
   end
