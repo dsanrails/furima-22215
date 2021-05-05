@@ -8,9 +8,12 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
+  def create
+    Item.create(item_params)
+  end
   private
 
-  def items_params
+  def item_params
     params.require(:item).permit(:purchase, :image).merge(user_id: current_user.id)
   end
 end
