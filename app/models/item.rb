@@ -7,5 +7,5 @@ class Item < ApplicationRecord
 
   validates :items_name, :explanation, :price, :image, presence: true
   validates :category_id, :status_id, :delivery_fee_id, :prefecture_id, :day_id, numericality: { other_than: 1 }
-  validates :price, numericality: { greater_than: 299,less_than: 9999999 }
+  validates :price, numericality: { greater_than: 299, less_than: 9_999_999 }
 end
