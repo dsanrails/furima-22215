@@ -5,7 +5,11 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    if user_signed_in?
+      @item = Item.new
+    else
+      redirect_to user_session_path(@item.id)
+    end
   end
 
   def create
@@ -20,7 +24,7 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
   end
-  
+
   private
 
   def item_params
