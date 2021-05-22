@@ -6,9 +6,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order_form = OrderForm.new(purchase_params)
-    if @order_form.valid?
-      @order_form.save
+    @order = OrderForm.new(purchase_params)
+    if @order.valid?
+      @order.save
       redirect_to action: :index
     else
       render action: :index
