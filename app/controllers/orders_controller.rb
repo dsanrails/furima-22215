@@ -6,11 +6,12 @@ class OrdersController < ApplicationController
   end
 
   def create
+    # binding.pry
     @order = OrderForm.new(purchase_params)
     if @order.valid?
       pay_item
       @order.save
-      redirect_to action: :index
+      redirect_to root_path
     else
       render action: :index
     end
@@ -24,7 +25,7 @@ class OrdersController < ApplicationController
 
   def purchase_params
     params.require(:order_form).permit(:postal_code, :prefecture_id, :municipality, :address, :building, :tel, :user_id,
-                                       :item_id).merge(token: params[:token])
+                                      :item_id).merge(token: params[:token])
   end
 
   def pay_item
