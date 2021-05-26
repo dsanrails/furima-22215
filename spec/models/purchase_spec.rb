@@ -60,10 +60,20 @@ RSpec.describe Purchase, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include('Tel is invalid')
       end
-      it 'tokenが空では登録できないこと' do
+      it 'tokenが空では登録できない' do
         @order.token = nil
         @order.valid?
         expect(@order.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'user_idが空では登録できない' do
+        @order.user_id = ''
+        @order.valid?
+        expect(@order.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空では登録できない' do
+        @order.item_id = ''
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
