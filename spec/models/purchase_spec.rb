@@ -60,6 +60,11 @@ RSpec.describe Purchase, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include('Tel is invalid')
       end
+      it '電話番号は英数混合では登録できない' do
+        @order.tel = '0901234567a'
+        @order.valid?
+        expect(@order.errors.full_messages).to include('Tel is invalid')
+      end
       it 'tokenが空では登録できない' do
         @order.token = nil
         @order.valid?
