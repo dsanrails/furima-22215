@@ -10,6 +10,6 @@ class OrderForm
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
     Address.create(postal_code: postal_code, prefecture_id: prefecture_id, municipality: municipality, address: address,
-                  building: building, tel: tel, purchase_id: purchase_id)
+                   building: building, tel: tel, purchase_id: purchase_id)
   end
 end

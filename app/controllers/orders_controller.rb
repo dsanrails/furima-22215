@@ -26,7 +26,9 @@ class OrdersController < ApplicationController
   end
 
   def purchase_params
-    params.require(:order_form).permit(:postal_code, :prefecture_id, :municipality, :address, :building, :tel).merge(token: params[:token],item_id: params[:item_id],user_id: current_user.id)
+    params.require(:order_form).permit(:postal_code, :prefecture_id, :municipality, :address, :building, :tel).merge(
+      token: params[:token], item_id: params[:item_id], user_id: current_user.id
+    )
   end
 
   def pay_item
@@ -43,8 +45,6 @@ class OrdersController < ApplicationController
   end
 
   def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless user_signed_in?
   end
 end
